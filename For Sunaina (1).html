@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>For Sunaina</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;1,400&family=Nunito:wght@400;600&display=swap">
+<style>
+:root{--bg:#1b1535;--ink:#fff4e3;--dim:#c9bfe0;--gold:#f2b84b;--rose:#e86a8a;--line:#3a2f66;
+color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.7 Nunito,system-ui,sans-serif;overflow-x:hidden}
+h1,h2{font-family:Fraunces,Georgia,serif;font-weight:700;line-height:1.1;margin:0}
+.gate{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;gap:1.2rem}
+.gate h1{font-size:clamp(2.6rem,10vw,5.5rem)}
+.gate p{color:var(--dim);max-width:30ch;margin:0}
+.heart{font-size:3rem;animation:beat 1.6s infinite}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.25)}30%{transform:scale(1)}45%{transform:scale(1.18)}}
+button{font:600 1rem Nunito,sans-serif;background:var(--gold);color:#2a1a00;border:0;border-radius:99px;padding:.9rem 2rem;cursor:pointer}
+button:focus-visible{outline:3px solid var(--rose);outline-offset:3px}
+.road{position:relative;max-width:640px;margin:0 auto;padding:4rem 1.5rem 2rem 3.5rem}
+.road::before{content:"";position:absolute;left:1.4rem;top:0;bottom:0;width:3px;background:var(--line);border-radius:3px}
+.fill{position:absolute;left:1.4rem;top:0;width:3px;height:0;background:linear-gradient(var(--gold),var(--rose));border-radius:3px}
+.rider{position:absolute;left:.55rem;top:0;font-size:1.6rem;transition:top .15s linear;z-index:2}
+.chap{position:relative;margin-bottom:5rem;opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s}
+.chap.in{opacity:1;transform:none}
+.chap::before{content:"";position:absolute;left:-2.55rem;top:.9rem;width:13px;height:13px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px var(--bg)}
+.chap.hard::before{background:var(--rose)}
+.yr{font-family:Fraunces,serif;font-size:clamp(3rem,13vw,5rem);color:var(--gold);line-height:1;font-weight:700}
+.chap.hard .yr{color:var(--rose)}
+.chap h2{font-size:1.5rem;margin:.4rem 0 .6rem}
+.chap p{margin:0;color:var(--dim)}
+.quiet .yr{font-size:2rem;color:var(--dim);font-style:italic;font-weight:400}
+.end{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;gap:1.2rem}
+.end h2{font-size:clamp(2.2rem,8vw,4.2rem)}
+.msg{max-width:34ch;color:var(--dim);display:none;margin:0}
+.msg.show{display:block;animation:rise 1.2s both}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.big{font-family:Fraunces,serif;font-size:clamp(1.6rem,6vw,2.4rem);color:var(--gold);display:none;margin:0}
+.big.show{display:block;animation:rise 1.2s .4s both}
+canvas{position:fixed;inset:0;pointer-events:none;z-index:9}
+#main{display:none}
+.scene{position:relative;height:190px;margin-top:1.5rem;overflow:hidden;border-radius:16px;background:linear-gradient(#2a2150,#3a2f66)}
+.scene::after{content:"";position:absolute;left:0;right:0;bottom:8px;height:2px;background:var(--gold);opacity:.5}
+.scene *{animation-play-state:paused}
+.in .scene *{animation-play-state:running}
+.girl{position:absolute;bottom:2px;width:110px;left:-120px;animation:ride 4s cubic-bezier(.15,.6,.3,1) forwards}
+.boy{position:absolute;bottom:4px;width:50px;right:-60px;animation:walk 4s cubic-bezier(.3,.5,.4,1) forwards}
+.scene svg{display:block;overflow:visible}
+.wh{transform-box:fill-box;transform-origin:center;animation:spin 4s cubic-bezier(.15,.6,.3,1) forwards}
+.lg{transform-box:fill-box;transform-origin:50% 0;animation:step .5s ease-in-out 8 alternate}
+.lg.b{animation-direction:alternate-reverse}
+.pop{position:absolute;top:-6px;left:40px;font:700 1.6rem Fraunces,serif;color:var(--gold);opacity:0;animation:pop .5s 4s forwards}
+.boy .pop{left:10px}
+.mid{position:absolute;left:50%;bottom:95px;margin-left:-12px;font-size:2rem;color:var(--rose);opacity:0;animation:pop .6s var(--d,4.6s) forwards,fl 3s calc(var(--d,4.6s) + .6s) ease-out infinite}
+.cap{position:absolute;left:0;right:0;top:12px;text-align:center;font:italic 1.2rem Fraunces,serif;color:var(--gold);opacity:0;animation:pop .8s var(--c,5s) forwards}
+@keyframes ride{to{left:14%}}
+@keyframes walk{to{right:20%}}
+@keyframes spin{to{transform:rotate(1100deg)}}
+@keyframes step{from{transform:rotate(-26deg)}to{transform:rotate(26deg)}}
+@keyframes pop{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.scene *{animation:none!important}.girl{left:14%}.boy{right:20%}.pop,.mid,.cap{opacity:1}}
+.bub{position:absolute;padding:.3rem .8rem;border-radius:16px;font-size:.95rem;line-height:1.4;color:#2a1a00;background:var(--gold);opacity:0;animation:pop .4s var(--d) forwards}
+.bub.l{left:14px}.bub.r{right:14px;background:var(--rose)}
+.fig{position:absolute;bottom:4px;width:50px}
+.k1{left:calc(50% - 56px);animation:ka 3s ease-in-out both}.k2{right:calc(50% - 56px);animation:kb 3s ease-in-out both}
+.k1 svg,.k2 svg{transform-origin:50% 100%;animation:ln 1s 3s both}.k1 svg{--t:9deg}.k2 svg{--t:-9deg}
+@keyframes ka{from{transform:translateX(-120px)}}@keyframes kb{from{transform:translateX(120px)}}@keyframes ln{to{transform:rotate(var(--t))}}
+.f1{left:8%;animation:sa 3s 2s ease-in-out both}.f2{right:8%;animation:sb 3s 2s ease-in-out both}
+@keyframes sa{from{left:38%}}@keyframes sb{from{right:38%}}
+.bolt{position:absolute;top:8px;left:50%;margin-left:-22px;font-size:2.4rem;opacity:0;animation:fk .5s .4s 4}
+@keyframes fk{0%,100%{opacity:0}50%{opacity:1}}
+.sun{position:absolute;left:50%;margin-left:-26px;top:96px;width:52px;height:52px;border-radius:50%;background:var(--gold);animation:sn 5s ease-out both}
+@keyframes sn{from{top:10px}}
+.sk{position:absolute;left:0;bottom:0;width:100%;height:50px}
+.in-couple{position:absolute;bottom:6px;left:50%;margin:0 0 0 -60px!important;animation:pop .8s .3s both}
+.st{position:absolute;left:0;top:0;width:3px;height:3px;border-radius:50%;background:#fff;box-shadow:40px 30px #fff,90px 70px #fff,150px 20px #fff,210px 60px #fff,260px 25px #fff,300px 80px #fff,70px 120px #fff,320px 30px #fff;animation:tw 1.8s ease-in-out infinite alternate}
+@keyframes tw{from{opacity:.2}to{opacity:1}}
+.moon{position:absolute;right:18px;top:10px;font-size:2rem}
+.shoot{position:absolute;top:20px;left:-10px;width:60px;height:2px;background:linear-gradient(90deg,transparent,#fff);opacity:0;animation:sh 2.5s 1.5s infinite}
+@keyframes sh{from{transform:translate(0,0) rotate(25deg);opacity:1}to{transform:translate(340px,150px) rotate(25deg);opacity:0}}
+.ring{position:absolute;top:6px;width:44px;height:44px;border:6px solid var(--gold);border-radius:50%}
+.r1{left:calc(50% - 40px);animation:ra 2.5s ease-out both}.r2{left:calc(50% - 4px);animation:rb 2.5s ease-out both}
+@keyframes ra{from{left:-50px}}@keyframes rb{from{left:100%}}
+.sp{position:absolute;font-size:1.3rem;opacity:0;animation:fk 1.4s var(--d) infinite}
+.dya{position:absolute;bottom:8px;font-size:1.8rem;animation:df .6s ease-in-out infinite alternate}
+@keyframes df{to{transform:scale(1.15)}}
+@media (prefers-reduced-motion:reduce){.bub,.sp,.bolt{opacity:1}}
+.couple{position:relative;width:120px;height:140px}
+.chap .couple{margin-top:1.5rem}
+.couple svg{display:block;transform-origin:50% 100%;animation:sway 3s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}
+.couple i{position:absolute;top:6px;left:50%;margin-left:-6px;font-style:normal;color:var(--rose);opacity:0;animation:fl 3s ease-out infinite}
+.couple i+i{margin-left:14px;animation-delay:1.5s}
+@keyframes fl{0%{transform:translateY(12px) scale(.6);opacity:0}30%{opacity:1}100%{transform:translateY(-48px) scale(1.2);opacity:0}}
+.couple.walk{animation:stroll 5s ease-in-out infinite alternate}
+@keyframes stroll{from{transform:translateX(0)}to{transform:translateX(130px)}}
+@media (prefers-reduced-motion:reduce){.couple svg,.couple i,.couple.walk{animation:none}.couple i{opacity:1}}
+@media (prefers-reduced-motion:reduce){.heart{animation:none}.chap{transition:none}.msg.show,.big.show{animation:none}}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="cp" viewBox="0 0 120 140"><rect x="30" y="100" width="10" height="34" rx="4" fill="#8f84c4"/><rect x="42" y="100" width="10" height="34" rx="4" fill="#8f84c4"/><rect x="26" y="46" width="30" height="58" rx="12" fill="#5b8def"/><circle cx="41" cy="32" r="14" fill="#f2c4a0"/><path d="M27 30a14 14 0 0 1 28 0c-6-6-22-6-28 0z" fill="#2a1a2e"/><path d="M64 34a14 14 0 0 1 28 0v34c0 6-6 6-6 0v-22h-16v22c0 6-6 6-6 0z" fill="#2a1a2e"/><rect x="71" y="100" width="8" height="34" rx="4" fill="#f2c4a0"/><rect x="82" y="100" width="8" height="34" rx="4" fill="#f2c4a0"/><path d="M71 48h14l16 56H56z" fill="#e86a8a"/><circle cx="78" cy="34" r="13" fill="#f2c4a0"/><path d="M54 70q10 8 20 0" stroke="#f2c4a0" stroke-width="5" fill="none" stroke-linecap="round"/></symbol><symbol id="bo" viewBox="0 0 50 110"><rect x="17" y="68" width="8" height="38" rx="4" fill="#8f84c4"/><rect x="27" y="68" width="8" height="38" rx="4" fill="#8f84c4"/><rect x="13" y="28" width="24" height="44" rx="10" fill="#5b8def"/><circle cx="25" cy="15" r="11" fill="#f2c4a0"/><path d="M14 14a11 11 0 0 1 22 0c-6-5-16-5-22 0z" fill="#2a1a2e"/><circle cx="20" cy="16" r="1.5" fill="#2a1a2e"/></symbol><symbol id="gi" viewBox="0 0 50 110"><path d="M12 22a13 13 0 0 1 26 0v34c0 6-6 6-6 0V40H18v16c0 6-6 6-6 0z" fill="#2a1a2e"/><rect x="18" y="88" width="6" height="18" rx="3" fill="#f2c4a0"/><rect x="27" y="88" width="6" height="18" rx="3" fill="#f2c4a0"/><path d="M23 38h4l14 54H9z" fill="#e86a8a"/><circle cx="25" cy="24" r="11" fill="#f2c4a0"/><path d="M13 22a12 12 0 0 1 24 0c-6-6-18-6-24 0z" fill="#2a1a2e"/><circle cx="30" cy="26" r="1.5" fill="#2a1a2e"/></symbol></svg>
+
+<section class="gate" id="gate">
+  <div class="couple"><i>♥</i><i>♥</i><svg viewBox="0 0 120 140" width="120" height="140" role="img" aria-label="A couple holding hands"><use href="#cp"/></svg></div>
+  <h1>Sunaina,<br>this is for you</h1>
+  <p>Eight years, one story. Scroll slowly and read every part.</p>
+  <button id="start">Open our story</button>
+</section>
+
+<main id="main">
+  <div class="road" id="road">
+    <div class="fill" id="fill"></div>
+    <div class="rider" id="rider">🛵</div>
+
+    <article class="chap">
+      <div class="yr">2018</div>
+      <h2>Hello, on Facebook</h2>
+      <p>It started with a message from a stranger. Then one chat turned into many, and I started waiting for your replies without knowing why.</p>
+      <div class="scene" aria-hidden="true"><div class="bub l" style="--d:.6s;top:12px">Hi 👋</div><div class="bub r" style="--d:1.8s;top:52px">Hello 🙂</div><div class="bub l" style="--d:3s;top:92px">What are you doing?</div><div class="bub r" style="--d:4.2s;top:132px">Chatting with you ♥</div></div>
+    </article>
+
+    <article class="chap">
+      <div class="yr">2019</div>
+      <h2>You on a cycle, me on foot</h2>
+      <p>After all those chats, I finally saw you for the first time. You were riding your cycle, I was walking, and for a second the whole road went quiet. Soon after, we met again, this time on an electric scooty.</p>
+      <div class="scene" role="img" aria-label="A girl on a cycle and a boy on foot see each other for the first time">
+        <div class="cap">The first look</div>
+        <div class="mid">♥</div>
+        <div class="girl"><span class="pop">!</span>
+          <svg viewBox="0 0 110 90" width="110" height="90" aria-hidden="true">
+            <g class="wh"><circle cx="22" cy="66" r="18" fill="none" stroke="#c9bfe0" stroke-width="3"/><path d="M22 48V84M4 66H40" stroke="#c9bfe0" stroke-width="2"/></g>
+            <g class="wh"><circle cx="88" cy="66" r="18" fill="none" stroke="#c9bfe0" stroke-width="3"/><path d="M88 48V84M70 66H106" stroke="#c9bfe0" stroke-width="2"/></g>
+            <path d="M22 66L48 66L40 40M48 66L70 40L88 66M40 40H70M70 40L74 32H82" stroke="#f2b84b" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M40 12Q24 14 20 34Q30 24 42 24z" fill="#2a1a2e"/>
+            <path d="M38 24Q48 18 58 24L62 42H36z" fill="#e86a8a"/>
+            <path d="M44 42L50 60" stroke="#8f84c4" stroke-width="5" stroke-linecap="round"/>
+            <path d="M56 28L74 34" stroke="#f2c4a0" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="48" cy="14" r="9" fill="#f2c4a0"/><path d="M39 13a9 9 0 0 1 18 0c-4-4-14-4-18 0z" fill="#2a1a2e"/>
+          </svg></div>
+        <div class="boy"><span class="pop">!</span>
+          <svg viewBox="0 0 50 110" width="50" height="110" aria-hidden="true">
+            <rect class="lg" x="17" y="68" width="8" height="38" rx="4" fill="#8f84c4"/>
+            <rect class="lg b" x="27" y="68" width="8" height="38" rx="4" fill="#8f84c4"/>
+            <rect x="13" y="28" width="24" height="44" rx="10" fill="#5b8def"/>
+            <circle cx="25" cy="15" r="11" fill="#f2c4a0"/><path d="M14 14a11 11 0 0 1 22 0c-6-5-16-5-22 0z" fill="#2a1a2e"/><circle cx="20" cy="16" r="1.5" fill="#2a1a2e"/>
+          </svg></div>
+      </div>
+    </article>
+
+    <article class="chap">
+      <div class="yr">2020</div>
+      <h2>Our first kiss</h2>
+      <p>A small moment that felt very big. Nothing was the same after it. Everything just felt like us.</p>
+      <div class="scene" aria-hidden="true"><div class="fig k1"><svg viewBox="0 0 50 110" width="50" height="110"><use href="#gi"/></svg></div><div class="fig k2"><svg viewBox="0 0 50 110" width="50" height="110"><use href="#bo"/></svg></div><div class="mid" style="--d:3.8s;bottom:105px">♥</div><div class="cap" style="--c:4.4s">Our first kiss</div></div>
+    </article>
+
+    <article class="chap hard">
+      <div class="yr">2021 – 2022</div>
+      <h2>The hard years</h2>
+      <p>We fought a lot. We broke up for around six months. Those were the hardest months of my life, and they taught me that I don't want a life without you.</p>
+      <div class="scene" style="background:linear-gradient(#1b1535,#3a2f66)" aria-hidden="true"><div class="bolt">⛈️</div><div class="fig f1"><svg viewBox="0 0 50 110" width="50" height="110"><use href="#gi"/></svg></div><div class="fig f2"><svg viewBox="0 0 50 110" width="50" height="110"><use href="#bo"/></svg></div><div class="mid" style="--d:4s">💔</div><div class="cap" style="--c:5.2s">Six months apart</div></div>
+    </article>
+
+    <article class="chap">
+      <div class="yr">2023</div>
+      <h2>We found our way back</h2>
+      <p>We patched up. We went to Mumbai together. I started my job. We loved each other more than ever, and this time we knew how much it was worth.</p>
+      <div class="scene" style="background:linear-gradient(#f2b84b55,#e86a8a66 55%,#2a2150)" aria-hidden="true"><div class="sun"></div><svg class="sk" viewBox="0 0 300 50" preserveAspectRatio="none"><path d="M0 50V30h20V18h14v12h16V22h10v8h24V12h12v18h20v-8h16v10h22V16h14v14h30V24h18v26z" fill="#1b1535"/></svg><div class="bub l" style="--d:2s;top:12px">New job 💼</div><div class="bub r" style="--d:3s;top:12px">Mumbai ♥</div><div class="couple in-couple"><i>♥</i><i>♥</i><svg viewBox="0 0 120 140" width="120" height="140"><use href="#cp"/></svg></div></div>
+    </article>
+
+    <article class="chap quiet">
+      <div class="yr">2024, 2025</div>
+      <p>Two quiet years of growing up together, one ordinary day at a time. Those are the years I'd relive first.</p>
+      <div class="scene" style="background:#120e26" aria-hidden="true"><div class="st"></div><div class="shoot"></div><div class="moon">🌙</div><div class="couple in-couple"><i>♥</i><i>♥</i><svg viewBox="0 0 120 140" width="120" height="140"><use href="#cp"/></svg></div><div class="cap" style="--c:2s;top:auto;bottom:70px;font-size:1rem">Just us, every day</div></div>
+    </article>
+
+    <article class="chap">
+      <div class="yr">2026</div>
+      <h2>Our roka</h2>
+      <p>We got engaged. Our roka is done. The girl from Facebook, the cycle, the scooty and the fights is now going to be my wife.</p>
+      <div class="scene" style="background:linear-gradient(#3a2f66,#6b3a6b)" aria-hidden="true"><div class="ring r1"></div><div class="ring r2"></div><div class="sp" style="--d:2.6s;left:22%;top:20px">✨</div><div class="sp" style="--d:3.2s;right:22%;top:30px">✨</div><div class="sp" style="--d:3.8s;left:12%;top:80px">✨</div><div class="sp" style="--d:4.4s;right:12%;top:90px">✨</div><div class="dya" style="left:14px">🪔</div><div class="dya" style="right:14px">🪔</div><div class="couple in-couple" style="animation-delay:2.8s"><i>♥</i><i>♥</i><svg viewBox="0 0 120 140" width="120" height="140"><use href="#cp"/></svg></div></div>
+    </article>
+  </div>
+
+  <section class="end">
+    <div class="couple"><i>♥</i><i>♥</i><svg viewBox="0 0 120 140" width="120" height="140" aria-hidden="true"><use href="#cp"/></svg></div>
+    <h2>One last thing</h2>
+    <button id="reveal">Tap here, Sunaina</button>
+    <p class="msg" id="msg">Through every fight and every goodbye, you were always my person. Thank you for choosing me again.</p>
+    <p class="big" id="big">I love you.<br>— Sudhanshu</p>
+  </section>
+</main>
+
+<script>
+(function(){
+  var gate=document.getElementById('gate'),main=document.getElementById('main');
+  document.getElementById('start').addEventListener('click',function(){
+    gate.style.display='none';main.style.display='block';window.scrollTo(0,0);observe();move();
+  });
+  function observe(){
+    var els=document.querySelectorAll('.chap');
+    if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.25});
+    els.forEach(function(e){io.observe(e)});
+  }
+  var road=document.getElementById('road'),fill=document.getElementById('fill'),rider=document.getElementById('rider');
+  function move(){
+    var r=road.getBoundingClientRect(),h=r.height;
+    var p=Math.min(Math.max((window.innerHeight*0.5-r.top)/h,0),1);
+    fill.style.height=(p*h)+'px';rider.style.top=Math.max(p*h-14,0)+'px';
+  }
+  window.addEventListener('scroll',move,{passive:true});window.addEventListener('resize',move);
+
+  var cv=document.getElementById('c'),ctx=cv.getContext('2d'),parts=[],run=false;
+  function size(){cv.width=innerWidth;cv.height=innerHeight}size();window.addEventListener('resize',size);
+  function burst(){
+    var cols=['#f2b84b','#e86a8a','#fff4e3','#ff9ab0'];
+    for(var i=0;i<140;i++)parts.push({x:cv.width/2,y:cv.height*0.6,vx:(Math.random()-.5)*12,vy:-Math.random()*12-3,s:8+Math.random()*12,c:cols[i%4],l:1});
+    if(!run){run=true;tick()}
+  }
+  function tick(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    parts=parts.filter(function(p){return p.l>0});
+    parts.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.vy+=.25;p.l-=.008;ctx.globalAlpha=Math.max(p.l,0);ctx.fillStyle=p.c;ctx.font=p.s+'px serif';ctx.fillText('♥',p.x,p.y)});
+    if(parts.length)requestAnimationFrame(tick);else{run=false;ctx.clearRect(0,0,cv.width,cv.height)}
+  }
+  document.getElementById('reveal').addEventListener('click',function(){
+    this.style.display='none';
+    document.getElementById('msg').classList.add('show');
+    document.getElementById('big').classList.add('show');
+    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)burst();
+  });
+})();
+</script>
+</body>
+</html>
